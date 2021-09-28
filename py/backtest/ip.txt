@@ -1,0 +1,622 @@
+Chain INPUT (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 ACCEPT     tcp  --  any    any     anywhere             anywhere            tcp dpt:us-cli 
+    0     0 DROP       udp  --  any    any     anywhere             anywhere            udp dpt:l2tp policy match dir in pol none 
+   17   910 DROP       all  --  any    any     anywhere             anywhere            ctstate INVALID 
+96259   48M ACCEPT     all  --  any    any     anywhere             anywhere            ctstate RELATED,ESTABLISHED 
+    3  1644 ACCEPT     udp  --  any    any     anywhere             anywhere            multiport dports isakmp,ipsec-nat-t 
+    2   194 ACCEPT     udp  --  any    any     anywhere             anywhere            udp dpt:l2tp policy match dir in pol ipsec 
+    0     0 DROP       udp  --  any    any     anywhere             anywhere            udp dpt:l2tp 
+    0     0 ACCEPT     tcp  --  !lo    any     ns2-coloc.hetzner.net  anywhere            tcp dpt:domain 
+    0     0 ACCEPT     udp  --  !lo    any     ns2-coloc.hetzner.net  anywhere            udp dpt:domain 
+    0     0 ACCEPT     tcp  --  !lo    any     ns2-coloc.hetzner.net  anywhere            tcp spt:domain 
+    6   424 ACCEPT     udp  --  !lo    any     ns2-coloc.hetzner.net  anywhere            udp spt:domain 
+    0     0 ACCEPT     tcp  --  !lo    any     ns1-coloc.hetzner.de  anywhere            tcp dpt:domain 
+    0     0 ACCEPT     udp  --  !lo    any     ns1-coloc.hetzner.de  anywhere            udp dpt:domain 
+    0     0 ACCEPT     tcp  --  !lo    any     ns1-coloc.hetzner.de  anywhere            tcp spt:domain 
+    0     0 ACCEPT     udp  --  !lo    any     ns1-coloc.hetzner.de  anywhere            udp spt:domain 
+ 2067  129K LOCALINPUT  all  --  !lo    any     anywhere             anywhere            
+    4   208 ACCEPT     all  --  lo     any     anywhere             anywhere            
+    0     0 ACCEPT     all  --  !lo    any     anywhere             anywhere            state RELATED,ESTABLISHED 
+    0     0 ACCEPT     tcp  --  !lo    any     anywhere             anywhere            state NEW tcp dpt:ftp-data 
+   36  1728 ACCEPT     tcp  --  !lo    any     anywhere             anywhere            state NEW tcp dpt:ftp 
+    1    40 ACCEPT     tcp  --  !lo    any     anywhere             anywhere            state NEW tcp dpt:lupa 
+    6   312 ACCEPT     tcp  --  !lo    any     anywhere             anywhere            state NEW tcp dpt:smtp 
+    0     0 ACCEPT     tcp  --  !lo    any     anywhere             anywhere            state NEW tcp dpt:domain 
+    9   488 ACCEPT     tcp  --  !lo    any     anywhere             anywhere            state NEW tcp dpt:http 
+    0     0 ACCEPT     tcp  --  !lo    any     anywhere             anywhere            state NEW tcp dpt:pop3 
+    0     0 ACCEPT     tcp  --  !lo    any     anywhere             anywhere            state NEW tcp dpt:imap 
+    5   256 ACCEPT     tcp  --  !lo    any     anywhere             anywhere            state NEW tcp dpt:https 
+    0     0 ACCEPT     tcp  --  !lo    any     anywhere             anywhere            state NEW tcp dpt:urd 
+    0     0 ACCEPT     tcp  --  !lo    any     anywhere             anywhere            state NEW tcp dpt:submission 
+    2   120 ACCEPT     tcp  --  !lo    any     anywhere             anywhere            state NEW tcp dpt:imaps 
+    0     0 ACCEPT     tcp  --  !lo    any     anywhere             anywhere            state NEW tcp dpt:pop3s 
+    0     0 ACCEPT     tcp  --  !lo    any     anywhere             anywhere            state NEW tcp dpt:EtherNet/IP-1 
+    0     0 ACCEPT     udp  --  !lo    any     anywhere             anywhere            state NEW udp dpt:ftp-data 
+    0     0 ACCEPT     udp  --  !lo    any     anywhere             anywhere            state NEW udp dpt:ftp 
+    1    59 ACCEPT     udp  --  !lo    any     anywhere             anywhere            state NEW udp dpt:domain 
+   57  4655 ACCEPT     icmp --  !lo    any     anywhere             anywhere            icmp echo-request 
+    0     0 ACCEPT     icmp --  !lo    any     anywhere             anywhere            icmp echo-reply 
+    0     0 ACCEPT     icmp --  !lo    any     anywhere             anywhere            icmp time-exceeded 
+    0     0 ACCEPT     icmp --  !lo    any     anywhere             anywhere            icmp destination-unreachable 
+  414 29665 LOGDROPIN  all  --  !lo    any     anywhere             anywhere            
+    0     0 ACCEPT     all  --  any    any     anywhere             anywhere            policy match dir in pol ipsec 
+    0     0 ACCEPT     udp  --  any    any     anywhere             anywhere            policy match dir in pol ipsec udp dpt:l2tp 
+    0     0 ACCEPT     udp  --  any    any     anywhere             anywhere            udp dpt:isakmp 
+    0     0 ACCEPT     udp  --  any    any     anywhere             anywhere            udp dpt:ipsec-nat-t 
+    0     0 ACCEPT     udp  --  any    any     anywhere             anywhere            udp dpt:l2tp 
+    0     0 ACCEPT     udp  --  any    any     anywhere             anywhere            udp dpt:re-mail-ck 
+    0     0 REJECT     udp  --  any    any     anywhere             anywhere            udp dpt:re-mail-ck reject-with icmp-port-unreachable 
+    0     0 REJECT     udp  --  any    any     anywhere             anywhere            udp dpt:l2tp reject-with icmp-port-unreachable 
+    0     0 ACCEPT     udp  --  any    any     anywhere             anywhere            udp dpt:l2tp 
+    0     0 ACCEPT     udp  --  any    any     anywhere             anywhere            udp dpt:re-mail-ck 
+
+Chain FORWARD (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+   26  2459 DROP       all  --  any    any     anywhere             anywhere            ctstate INVALID 
+16109   23M ACCEPT     all  --  eth0   ppp+    anywhere             anywhere            ctstate RELATED,ESTABLISHED 
+18714 7411K ACCEPT     all  --  ppp+   eth0    anywhere             anywhere            
+    0     0 ACCEPT     all  --  ppp+   ppp+    192.168.42.0/24      192.168.42.0/24     
+    0     0 ACCEPT     all  --  eth0   any     anywhere             192.168.43.0/24     ctstate RELATED,ESTABLISHED 
+    0     0 ACCEPT     all  --  any    eth0    192.168.43.0/24      anywhere            
+    0     0 ACCEPT     all  --  any    any     anywhere             anywhere            policy match dir in pol ipsec 
+    0     0 ACCEPT     all  --  ppp+   any     anywhere             anywhere            state NEW,RELATED,ESTABLISHED 
+   11  4558 ACCEPT     all  --  any    any     anywhere             anywhere            state RELATED,ESTABLISHED 
+    0     0 DROP       all  --  any    any     anywhere             anywhere            
+
+Chain OUTPUT (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 ACCEPT     tcp  --  any    !lo     anywhere             ns2-coloc.hetzner.net tcp dpt:domain 
+  149 10769 ACCEPT     udp  --  any    !lo     anywhere             ns2-coloc.hetzner.net udp dpt:domain 
+    0     0 ACCEPT     tcp  --  any    !lo     anywhere             ns2-coloc.hetzner.net tcp spt:domain 
+    0     0 ACCEPT     udp  --  any    !lo     anywhere             ns2-coloc.hetzner.net udp spt:domain 
+    0     0 ACCEPT     tcp  --  any    !lo     anywhere             ns1-coloc.hetzner.de tcp dpt:domain 
+  748 53150 ACCEPT     udp  --  any    !lo     anywhere             ns1-coloc.hetzner.de udp dpt:domain 
+    0     0 ACCEPT     tcp  --  any    !lo     anywhere             ns1-coloc.hetzner.de tcp spt:domain 
+    0     0 ACCEPT     udp  --  any    !lo     anywhere             ns1-coloc.hetzner.de udp spt:domain 
+94196   54M LOCALOUTPUT  all  --  any    !lo     anywhere             anywhere            
+    0     0 ACCEPT     tcp  --  any    !lo     anywhere             anywhere            tcp dpt:domain 
+   14   868 ACCEPT     udp  --  any    !lo     anywhere             anywhere            udp dpt:domain 
+    0     0 ACCEPT     tcp  --  any    !lo     anywhere             anywhere            tcp spt:domain 
+    1    59 ACCEPT     udp  --  any    !lo     anywhere             anywhere            udp spt:domain 
+   50  4442 ACCEPT     all  --  any    lo      anywhere             anywhere            
+87866   54M ACCEPT     all  --  any    !lo     anywhere             anywhere            state RELATED,ESTABLISHED 
+    0     0 ACCEPT     tcp  --  any    !lo     anywhere             anywhere            state NEW tcp dpt:ftp-data 
+    0     0 ACCEPT     tcp  --  any    !lo     anywhere             anywhere            state NEW tcp dpt:ftp 
+    0     0 ACCEPT     tcp  --  any    !lo     anywhere             anywhere            state NEW tcp dpt:lupa 
+    0     0 ACCEPT     tcp  --  any    !lo     anywhere             anywhere            state NEW tcp dpt:smtp 
+    0     0 ACCEPT     tcp  --  any    !lo     anywhere             anywhere            state NEW tcp dpt:domain 
+    1    60 ACCEPT     tcp  --  any    !lo     anywhere             anywhere            state NEW tcp dpt:http 
+    0     0 ACCEPT     tcp  --  any    !lo     anywhere             anywhere            state NEW tcp dpt:pop3 
+    0     0 ACCEPT     tcp  --  any    !lo     anywhere             anywhere            state NEW tcp dpt:auth 
+ 4036  242K ACCEPT     tcp  --  any    !lo     anywhere             anywhere            state NEW tcp dpt:https 
+    0     0 ACCEPT     tcp  --  any    !lo     anywhere             anywhere            state NEW tcp dpt:submission 
+    0     0 ACCEPT     tcp  --  any    !lo     anywhere             anywhere            state NEW tcp dpt:imaps 
+    0     0 ACCEPT     tcp  --  any    !lo     anywhere             anywhere            state NEW tcp dpt:pop3s 
+    0     0 ACCEPT     tcp  --  any    !lo     anywhere             anywhere            state NEW tcp dpt:EtherNet/IP-1 
+    0     0 ACCEPT     udp  --  any    !lo     anywhere             anywhere            state NEW udp dpt:ftp-data 
+    0     0 ACCEPT     udp  --  any    !lo     anywhere             anywhere            state NEW udp dpt:ftp 
+    0     0 ACCEPT     udp  --  any    !lo     anywhere             anywhere            state NEW udp dpt:domain 
+    0     0 ACCEPT     udp  --  any    !lo     anywhere             anywhere            state NEW udp dpt:auth 
+    0     0 ACCEPT     udp  --  any    !lo     anywhere             anywhere            state NEW udp dpt:ntp 
+    0     0 ACCEPT     icmp --  any    !lo     anywhere             anywhere            icmp echo-reply 
+   30  1800 ACCEPT     icmp --  any    !lo     anywhere             anywhere            icmp echo-request 
+    0     0 ACCEPT     icmp --  any    !lo     anywhere             anywhere            icmp time-exceeded 
+    0     0 ACCEPT     icmp --  any    !lo     anywhere             anywhere            icmp destination-unreachable 
+   34  2658 LOGDROPOUT  all  --  any    !lo     anywhere             anywhere            
+
+Chain ALLOWIN (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 ACCEPT     all  --  !lo    any     209.250.224.188.iomtt.com  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     static.252.87.203.116.clients.your-server.de  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     5-144-132-16.static.hostiran.name  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     155.138.136.173.vultr.com  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     45.77.136.29.vultr.com  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     78.141.222.249.vultr.com  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     185.165.41.239       anywhere            
+    0     0 ACCEPT     all  --  !lo    any     217.69.14.198.vultr.com  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     95.179.203.70.vultr.com  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     217.69.6.164.vultr.com  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     95.179.243.22.vultr.com  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     199.247.16.6.vultr.com  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     185.204.100.26       anywhere            
+    0     0 ACCEPT     all  --  !lo    any     185.165.40.199       anywhere            
+    0     0 ACCEPT     all  --  !lo    any     ip116.ip-54-37-174.eu  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     ip250.ip-51-77-71.eu  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     ip98.ip-54-39-39.net  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     ip83.ip-54-38-152.eu  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     ip61.ip-217-182-220.eu  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     static.154.236.251.148.clients.your-server.de  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     irsrv.mihanmizban.com  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     81.12.13.167         anywhere            
+    0     0 ACCEPT     all  --  !lo    any     hq16.acom-sacom.ovh  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     ip173.ip-5-135-104.eu  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     ip3.ip-178-32-50.eu  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     static.78.47.69.159.clients.your-server.de  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     100.92.206.71        anywhere            
+    0     0 ACCEPT     all  --  !lo    any     s2.lumitop.com       anywhere            
+    0     0 ACCEPT     all  --  !lo    any     static.231.145.243.136.clients.your-server.de  anywhere            
+    0     0 ACCEPT     all  --  !lo    any     5.56.135.38          anywhere            
+
+Chain ALLOWOUT (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 ACCEPT     all  --  any    !lo     anywhere             209.250.224.188.iomtt.com 
+   69 50376 ACCEPT     all  --  any    !lo     anywhere             static.252.87.203.116.clients.your-server.de 
+  223 12315 ACCEPT     all  --  any    !lo     anywhere             5-144-132-16.static.hostiran.name 
+    0     0 ACCEPT     all  --  any    !lo     anywhere             155.138.136.173.vultr.com 
+    0     0 ACCEPT     all  --  any    !lo     anywhere             45.77.136.29.vultr.com 
+    0     0 ACCEPT     all  --  any    !lo     anywhere             78.141.222.249.vultr.com 
+ 1612 88905 ACCEPT     all  --  any    !lo     anywhere             185.165.41.239      
+    0     0 ACCEPT     all  --  any    !lo     anywhere             217.69.14.198.vultr.com 
+    0     0 ACCEPT     all  --  any    !lo     anywhere             95.179.203.70.vultr.com 
+   31  3327 ACCEPT     all  --  any    !lo     anywhere             217.69.6.164.vultr.com 
+    0     0 ACCEPT     all  --  any    !lo     anywhere             95.179.243.22.vultr.com 
+   21  2183 ACCEPT     all  --  any    !lo     anywhere             199.247.16.6.vultr.com 
+    0     0 ACCEPT     all  --  any    !lo     anywhere             185.204.100.26      
+    4   240 ACCEPT     all  --  any    !lo     anywhere             185.165.40.199      
+    0     0 ACCEPT     all  --  any    !lo     anywhere             ip116.ip-54-37-174.eu 
+    0     0 ACCEPT     all  --  any    !lo     anywhere             ip250.ip-51-77-71.eu 
+    0     0 ACCEPT     all  --  any    !lo     anywhere             ip98.ip-54-39-39.net 
+    0     0 ACCEPT     all  --  any    !lo     anywhere             ip83.ip-54-38-152.eu 
+    0     0 ACCEPT     all  --  any    !lo     anywhere             ip61.ip-217-182-220.eu 
+    0     0 ACCEPT     all  --  any    !lo     anywhere             static.154.236.251.148.clients.your-server.de 
+    0     0 ACCEPT     all  --  any    !lo     anywhere             irsrv.mihanmizban.com 
+    0     0 ACCEPT     all  --  any    !lo     anywhere             81.12.13.167        
+    0     0 ACCEPT     all  --  any    !lo     anywhere             hq16.acom-sacom.ovh 
+    0     0 ACCEPT     all  --  any    !lo     anywhere             ip173.ip-5-135-104.eu 
+    0     0 ACCEPT     all  --  any    !lo     anywhere             ip3.ip-178-32-50.eu 
+  254 16291 ACCEPT     all  --  any    !lo     anywhere             static.78.47.69.159.clients.your-server.de 
+    0     0 ACCEPT     all  --  any    !lo     anywhere             100.92.206.71       
+    0     0 ACCEPT     all  --  any    !lo     anywhere             s2.lumitop.com      
+    0     0 ACCEPT     all  --  any    !lo     anywhere             static.231.145.243.136.clients.your-server.de 
+    0     0 ACCEPT     all  --  any    !lo     anywhere             5.56.135.38         
+
+Chain DENYIN (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 DROP       all  --  !lo    any     ool-603952a6.static.optonline.net  anywhere            
+    0     0 DROP       all  --  !lo    any     148.70.241.217       anywhere            
+    0     0 DROP       all  --  !lo    any     42.247.22.65         anywhere            
+    0     0 DROP       all  --  !lo    any     napoli.pdcfornurses.com  anywhere            
+    0     0 DROP       all  --  !lo    any     159.65.245.203       anywhere            
+    0     0 DROP       all  --  !lo    any     prod-sfo2.qencode-encoder-e4b2294e298f11ebaa07eef0a7ddd79b  anywhere            
+    0     0 DROP       all  --  !lo    any     40.124.4.131         anywhere            
+    0     0 DROP       all  --  !lo    any     thermocurrent.pdcfornurses.com  anywhere            
+    0     0 DROP       all  --  !lo    any     34.40.48.59.broad.cz.sx.dynamic.163data.com.cn  anywhere            
+    0     0 DROP       all  --  !lo    any     94.191.84.38         anywhere            
+    0     0 DROP       all  --  !lo    any     159.65.54.221        anywhere            
+    0     0 DROP       all  --  !lo    any     nomology.pdcfornurses.com  anywhere            
+    0     0 DROP       all  --  !lo    any     schillerization.pdcfornurses.com  anywhere            
+    0     0 DROP       all  --  !lo    any     crdoba.pdcfornurses.com  anywhere            
+    0     0 DROP       all  --  !lo    any     58.199.169.180       anywhere            
+    0     0 DROP       all  --  !lo    any     222.122.179.208      anywhere            
+    0     0 DROP       all  --  !lo    any     39.107.118.196       anywhere            
+    0     0 DROP       all  --  !lo    any     211.49.121.178       anywhere            
+    0     0 DROP       all  --  !lo    any     167.71.239.181       anywhere            
+    0     0 DROP       all  --  !lo    any     impertinently.pdcfornurses.com  anywhere            
+    0     0 DROP       all  --  !lo    any     denaturized.pdcfornurses.com  anywhere            
+    0     0 DROP       all  --  !lo    any     221.228.240.130      anywhere            
+    0     0 DROP       all  --  !lo    any     139.59.79.56         anywhere            
+    0     0 DROP       all  --  !lo    any     ns3121678.ip-5-135-190.eu  anywhere            
+    0     0 DROP       all  --  !lo    any     116.62.51.6          anywhere            
+    0     0 DROP       all  --  !lo    any     218.205.219.150      anywhere            
+    0     0 DROP       all  --  !lo    any     government.pdcfornurses.com  anywhere            
+    0     0 DROP       all  --  !lo    any     125.212.202.179      anywhere            
+    0     0 DROP       all  --  !lo    any     118-163-193-82.HINET-IP.hinet.net  anywhere            
+    0     0 DROP       all  --  !lo    any     unspecified.mtw.ru   anywhere            
+    0     0 DROP       all  --  !lo    any     222.249.237.218      anywhere            
+    0     0 DROP       all  --  !lo    any     ip67.ip-66-70-157.net  anywhere            
+    0     0 DROP       all  --  !lo    any     159.226.41.59        anywhere            
+    0     0 DROP       all  --  !lo    any     117.22.228.62        anywhere            
+    0     0 DROP       all  --  !lo    any     113.31.102.234       anywhere            
+    0     0 DROP       all  --  !lo    any     115.29.143.215       anywhere            
+    0     0 DROP       all  --  !lo    any     140.246.191.130      anywhere            
+    0     0 DROP       all  --  !lo    any     119.59.106.131       anywhere            
+    0     0 DROP       all  --  !lo    any     47.101.10.8          anywhere            
+    0     0 DROP       all  --  !lo    any     119.59.124.238       anywhere            
+    0     0 DROP       all  --  !lo    any     202.29.39.1          anywhere            
+    0     0 DROP       all  --  !lo    any     202.155.200.78       anywhere            
+    0     0 DROP       all  --  !lo    any     112.74.203.41        anywhere            
+    0     0 DROP       all  --  !lo    any     139.59.56.121        anywhere            
+    0     0 DROP       all  --  !lo    any     cosh.pdcfornurses.com  anywhere            
+    0     0 DROP       all  --  !lo    any     197-234-166-36.cipherwave.net  anywhere            
+    0     0 DROP       all  --  !lo    any     manipulator.pdcfornurses.com  anywhere            
+    0     0 DROP       all  --  !lo    any     116-251-58-217.pool.activ8me.net.au  anywhere            
+    0     0 DROP       all  --  !lo    any     139.59.14.210        anywhere            
+    0     0 DROP       all  --  !lo    any     128.199.242.84       anywhere            
+    0     0 DROP       all  --  !lo    any     195.54.160.180       anywhere            
+    0     0 DROP       all  --  !lo    any     52.186.40.140        anywhere            
+    0     0 DROP       all  --  !lo    any     106.12.183.239       anywhere            
+    0     0 DROP       all  --  !lo    any     121.184.148.227      anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.145.250        anywhere            
+    0     0 DROP       all  --  !lo    any     client.yota.ru       anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.145.252        anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.145.253        anywhere            
+    0     0 DROP       all  --  !lo    any     46.101.196.229       anywhere            
+    0     0 DROP       all  --  !lo    any     46.101.196.229       anywhere            
+    0     0 DROP       all  --  !lo    any     dsl-189-252-206-83-dyn.prod-infinitum.com.mx  anywhere            
+    0     0 DROP       all  --  !lo    any     242.187.204.221.adsl-pool.sx.cn  anywhere            
+    0     0 DROP       all  --  !lo    any     212.70.149.2         anywhere            
+    0     0 DROP       all  --  !lo    any     212.70.149.34        anywhere            
+    0     0 DROP       all  --  !lo    any     212.70.149.18        anywhere            
+    0     0 DROP       all  --  !lo    any     client-108-174-199-36.hostwindsdns.com  anywhere            
+    0     0 DROP       all  --  !lo    any     vpn.112.md           anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.148.2          anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.148.10         anywhere            
+    0     0 DROP       all  --  !lo    any     212.70.149.50        anywhere            
+    0     0 DROP       all  --  !lo    any     212.70.149.82        anywhere            
+    0     0 DROP       all  --  !lo    any     221.213.62.10        anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.150.94         anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.150.193        anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.150.203        anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.150.37         anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.150.142        anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.150.190        anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.150.191        anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.150.188        anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.150.153        anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.145.251        anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.145.247        anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.148.6          anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.145.248        anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.145.254        anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.145.249        anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.145.6          anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.145.5          anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.145.4          anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.148.18         anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.148.14         anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.148.22         anywhere            
+    0     0 DROP       all  --  !lo    any     overliterarily.edelecnasardiatanym.buzz  anywhere            
+    0     0 DROP       all  --  !lo    any     manufactory.edelecnasardiatanym.buzz  anywhere            
+    0     0 DROP       all  --  !lo    any     poaceous.waterfiltersinfo.com  anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.150.132        anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.150.72         anywhere            
+    0     0 DROP       all  --  !lo    any     46.38.150.47         anywhere            
+    0     0 DROP       all  --  !lo    any     f.185.143.73.58.outlook.bqxsgmywnausea.com  anywhere            
+    0     0 DROP       all  --  !lo    any     43.226.148.204       anywhere            
+    0     0 DROP       all  --  !lo    any     f.185.143.73.103.outlook.bqxsgmywnausea.com  anywhere            
+    0     0 DROP       all  --  !lo    any     f.185.143.73.41.outlook.bqxsgmywnausea.com  anywhere            
+    0     0 DROP       all  --  !lo    any     f.185.143.73.134.outlook.hjxbloc.com  anywhere            
+    0     0 DROP       all  --  !lo    any     f.185.143.73.175.outlook.hjxbloc.com  anywhere            
+    0     0 DROP       all  --  !lo    any     f.185.143.73.148.outlook.hjxbloc.com  anywhere            
+    0     0 DROP       all  --  !lo    any     200.220.202.13       anywhere            
+    0     0 DROP       all  --  !lo    any     203.86.26.49         anywhere            
+    0     0 DROP       all  --  !lo    any     f.185.143.73.203.outlook.hjxbloc.com  anywhere            
+    0     0 DROP       all  --  !lo    any     f.185.143.73.93.outlook.bqxsgmywnausea.com  anywhere            
+    0     0 DROP       all  --  !lo    any     f.185.143.73.162.outlook.hjxbloc.com  anywhere            
+    0     0 DROP       all  --  !lo    any     api.schoolonweb      anywhere            
+    0     0 DROP       all  --  !lo    any     212.70.149.3         anywhere            
+    0     0 DROP       all  --  !lo    any     122.51.250.133       anywhere            
+    0     0 DROP       all  --  !lo    any     212.70.149.51        anywhere            
+    0     0 DROP       all  --  !lo    any     212.70.149.19        anywhere            
+    0     0 DROP       all  --  !lo    any     49.35.60.23          anywhere            
+    0     0 DROP       all  --  !lo    any     47.98.170.47         anywhere            
+    0     0 DROP       all  --  !lo    any     evidenzit.com.br     anywhere            
+    0     0 DROP       all  --  !lo    any     101.32.3.166         anywhere            
+    0     0 DROP       all  --  !lo    any     110.186.58.156       anywhere            
+    0     0 DROP       all  --  !lo    any     94.102.50.185        anywhere            
+    0     0 DROP       all  --  !lo    any     37.49.224.157        anywhere            
+    0     0 DROP       all  --  !lo    any     client-23-254-167-187.hostwindsdns.com  anywhere            
+    0     0 DROP       all  --  !lo    any     ip5b430809.dynamic.kabel-deutschland.de  anywhere            
+    0     0 DROP       all  --  !lo    any     192.241.135.20       anywhere            
+    0     0 DROP       all  --  !lo    any     106.58.222.84        anywhere            
+    0     0 DROP       all  --  !lo    any     91.191.209.188       anywhere            
+    0     0 DROP       all  --  !lo    any     91.191.209.153       anywhere            
+    0     0 DROP       all  --  !lo    any     91.191.209.190       anywhere            
+    0     0 DROP       all  --  !lo    any     91.191.209.142       anywhere            
+    0     0 DROP       all  --  !lo    any     91.191.209.37        anywhere            
+    0     0 DROP       all  --  !lo    any     91.191.209.203       anywhere            
+    0     0 DROP       all  --  !lo    any     91.191.209.94        anywhere            
+    0     0 DROP       all  --  !lo    any     91.191.209.193       anywhere            
+    0     0 DROP       all  --  !lo    any     91.191.209.132       anywhere            
+    0     0 DROP       all  --  !lo    any     91.191.209.72        anywhere            
+    0     0 DROP       all  --  !lo    any     91.191.209.47        anywhere            
+    0     0 DROP       all  --  !lo    any     hwsrv-781892.hostwindsdns.com  anywhere            
+    0     0 DROP       all  --  !lo    any     ptr-not-configured.cloudatcost  anywhere            
+    0     0 DROP       all  --  !lo    any     hwsrv-799439.hostwindsdns.com  anywhere            
+    0     0 DROP       all  --  !lo    any     212.70.149.83        anywhere            
+    0     0 DROP       all  --  !lo    any     212.70.149.20        anywhere            
+    0     0 DROP       all  --  !lo    any     212.70.149.36        anywhere            
+    0     0 DROP       all  --  !lo    any     212.70.149.52        anywhere            
+    0     0 DROP       all  --  !lo    any     212.70.149.68        anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.74        anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.93        anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.166       anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.53        anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.179       anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.137       anywhere            
+    0     0 DROP       all  --  !lo    any     client-192-119-80-141.hostwindsdns.com  anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.209       anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.144       anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.61        anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.157       anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.89        anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.183       anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.36        anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.147       anywhere            
+    0     0 DROP       all  --  !lo    any     103.25.36.245        anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.192       anywhere            
+    0     0 DROP       all  --  !lo    any     212.70.149.4         anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.20        anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.83        anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.49        anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.121       anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.78        anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.117       anywhere            
+    0     0 DROP       all  --  !lo    any     australseguros.co.mz  anywhere            
+    0     0 DROP       all  --  !lo    any     185.234.219.229      anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.215       anywhere            
+    0     0 DROP       all  --  !lo    any     39.99.237.209        anywhere            
+    0     0 DROP       all  --  !lo    any     client-192-119-80-173.hostwindsdns.com  anywhere            
+    0     0 DROP       all  --  !lo    any     79.137.187.96        anywhere            
+    0     0 DROP       all  --  !lo    any     79.137.186.106       anywhere            
+    0     0 DROP       all  --  !lo    any     116.236.74.78        anywhere            
+    0     0 DROP       all  --  !lo    any     60.7.32.125          anywhere            
+  279 16740 DROP       all  --  !lo    any     212.70.149.5         anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.59        anywhere            
+    0     0 DROP       all  --  !lo    any     hwsrv-785337.hostwindsdns.com  anywhere            
+    0     0 DROP       all  --  !lo    any     183.135.152.47       anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.60        anywhere            
+    0     0 DROP       all  --  !lo    any     pppoe.178-66-214-126.dynamic.avangarddsl.ru  anywhere            
+    0     0 DROP       all  --  !lo    any     45.142.120.38        anywhere            
+    0     0 DROP       all  --  !lo    any     139.155.45.198       anywhere            
+    0     0 DROP       all  --  !lo    any     211.97.31.20         anywhere            
+    0     0 DROP       all  --  !lo    any     193.56.28.77         anywhere            
+  282 16920 DROP       all  --  !lo    any     212.70.149.21        anywhere            
+  270 16200 DROP       all  --  !lo    any     212.70.149.53        anywhere            
+  264 15840 DROP       all  --  !lo    any     212.70.149.84        anywhere            
+    0     0 DROP       all  --  !lo    any     77.83.203.130        anywhere            
+  393 23580 DROP       all  --  !lo    any     212.70.149.37        anywhere            
+   48  2880 DROP       all  --  !lo    any     212.70.149.69        anywhere            
+    0     0 DROP       all  --  !lo    any     103.133.111.7        anywhere            
+    0     0 DROP       all  --  !lo    any     hn.ly.kd.adsl        anywhere            
+    0     0 DROP       all  --  !lo    any     251.149.48.59.broad.yc.sx.dynamic.163data.com.cn  anywhere            
+    0     0 DROP       all  --  !lo    any     64.30.213.193.static.cust.telenor.com  anywhere            
+    0     0 DROP       all  --  !lo    any     45.119.84.159        anywhere            
+
+Chain DENYOUT (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             ool-603952a6.static.optonline.net 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             148.70.241.217      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             42.247.22.65        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             napoli.pdcfornurses.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             159.65.245.203      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             prod-sfo2.qencode-encoder-e4b2294e298f11ebaa07eef0a7ddd79b 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             40.124.4.131        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             thermocurrent.pdcfornurses.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             34.40.48.59.broad.cz.sx.dynamic.163data.com.cn 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             94.191.84.38        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             159.65.54.221       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             nomology.pdcfornurses.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             schillerization.pdcfornurses.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             crdoba.pdcfornurses.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             58.199.169.180      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             222.122.179.208     
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             39.107.118.196      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             211.49.121.178      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             167.71.239.181      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             impertinently.pdcfornurses.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             denaturized.pdcfornurses.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             221.228.240.130     
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             139.59.79.56        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             ns3121678.ip-5-135-190.eu 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             116.62.51.6         
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             218.205.219.150     
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             government.pdcfornurses.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             125.212.202.179     
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             118-163-193-82.HINET-IP.hinet.net 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             unspecified.mtw.ru  
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             222.249.237.218     
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             ip67.ip-66-70-157.net 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             159.226.41.59       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             117.22.228.62       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             113.31.102.234      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             115.29.143.215      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             140.246.191.130     
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             119.59.106.131      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             47.101.10.8         
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             119.59.124.238      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             202.29.39.1         
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             202.155.200.78      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             112.74.203.41       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             139.59.56.121       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             cosh.pdcfornurses.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             197-234-166-36.cipherwave.net 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             manipulator.pdcfornurses.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             116-251-58-217.pool.activ8me.net.au 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             139.59.14.210       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             128.199.242.84      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             195.54.160.180      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             52.186.40.140       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             106.12.183.239      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             121.184.148.227     
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.145.250       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             client.yota.ru      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.145.252       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.145.253       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.101.196.229      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.101.196.229      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             dsl-189-252-206-83-dyn.prod-infinitum.com.mx 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             242.187.204.221.adsl-pool.sx.cn 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             212.70.149.2        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             212.70.149.34       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             212.70.149.18       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             client-108-174-199-36.hostwindsdns.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             vpn.112.md          
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.148.2         
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.148.10        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             212.70.149.50       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             212.70.149.82       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             221.213.62.10       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.150.94        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.150.193       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.150.203       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.150.37        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.150.142       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.150.190       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.150.191       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.150.188       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.150.153       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.145.251       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.145.247       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.148.6         
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.145.248       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.145.254       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.145.249       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.145.6         
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.145.5         
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.145.4         
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.148.18        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.148.14        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.148.22        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             overliterarily.edelecnasardiatanym.buzz 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             manufactory.edelecnasardiatanym.buzz 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             poaceous.waterfiltersinfo.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.150.132       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.150.72        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             46.38.150.47        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             f.185.143.73.58.outlook.bqxsgmywnausea.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             43.226.148.204      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             f.185.143.73.103.outlook.bqxsgmywnausea.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             f.185.143.73.41.outlook.bqxsgmywnausea.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             f.185.143.73.134.outlook.hjxbloc.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             f.185.143.73.175.outlook.hjxbloc.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             f.185.143.73.148.outlook.hjxbloc.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             200.220.202.13      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             203.86.26.49        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             f.185.143.73.203.outlook.hjxbloc.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             f.185.143.73.93.outlook.bqxsgmywnausea.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             f.185.143.73.162.outlook.hjxbloc.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             api.schoolonweb     
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             212.70.149.3        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             122.51.250.133      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             212.70.149.51       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             212.70.149.19       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             49.35.60.23         
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             47.98.170.47        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             evidenzit.com.br    
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             101.32.3.166        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             110.186.58.156      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             94.102.50.185       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             37.49.224.157       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             client-23-254-167-187.hostwindsdns.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             ip5b430809.dynamic.kabel-deutschland.de 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             192.241.135.20      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             106.58.222.84       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             91.191.209.188      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             91.191.209.153      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             91.191.209.190      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             91.191.209.142      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             91.191.209.37       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             91.191.209.203      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             91.191.209.94       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             91.191.209.193      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             91.191.209.132      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             91.191.209.72       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             91.191.209.47       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             hwsrv-781892.hostwindsdns.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             ptr-not-configured.cloudatcost 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             hwsrv-799439.hostwindsdns.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             212.70.149.83       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             212.70.149.20       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             212.70.149.36       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             212.70.149.52       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             212.70.149.68       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.74       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.93       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.166      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.53       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.179      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.137      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             client-192-119-80-141.hostwindsdns.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.209      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.144      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.61       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.157      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.89       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.183      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.36       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.147      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             103.25.36.245       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.192      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             212.70.149.4        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.20       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.83       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.49       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.121      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.78       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.117      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             australseguros.co.mz 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             185.234.219.229     
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.215      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             39.99.237.209       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             client-192-119-80-173.hostwindsdns.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             79.137.187.96       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             79.137.186.106      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             116.236.74.78       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             60.7.32.125         
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             212.70.149.5        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.59       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             hwsrv-785337.hostwindsdns.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             183.135.152.47      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.60       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             pppoe.178-66-214-126.dynamic.avangarddsl.ru 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.142.120.38       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             139.155.45.198      
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             211.97.31.20        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             193.56.28.77        
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             212.70.149.21       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             212.70.149.53       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             212.70.149.84       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             77.83.203.130       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             212.70.149.37       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             212.70.149.69       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             103.133.111.7       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             hn.ly.kd.adsl       
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             251.149.48.59.broad.yc.sx.dynamic.163data.com.cn 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             64.30.213.193.static.cust.telenor.com 
+    0     0 LOGDROPOUT  all  --  any    !lo     anywhere             45.119.84.159       
+
+Chain LOCALINPUT (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+ 2067  129K ALLOWIN    all  --  !lo    any     anywhere             anywhere            
+ 2067  129K DENYIN     all  --  !lo    any     anywhere             anywhere            
+
+Chain LOCALOUTPUT (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+94196   54M ALLOWOUT   all  --  any    !lo     anywhere             anywhere            
+91982   54M DENYOUT    all  --  any    !lo     anywhere             anywhere            
+
+Chain LOGDROPIN (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    5   200 DROP       tcp  --  any    any     anywhere             anywhere            tcp dpt:telnet 
+    0     0 DROP       udp  --  any    any     anywhere             anywhere            udp dpt:telnet 
+    0     0 DROP       tcp  --  any    any     anywhere             anywhere            tcp dpt:bootps 
+    0     0 DROP       udp  --  any    any     anywhere             anywhere            udp dpt:bootps 
+    0     0 DROP       tcp  --  any    any     anywhere             anywhere            tcp dpt:bootpc 
+    0     0 DROP       udp  --  any    any     anywhere             anywhere            udp dpt:bootpc 
+    0     0 DROP       tcp  --  any    any     anywhere             anywhere            tcp dpt:sunrpc 
+    0     0 DROP       udp  --  any    any     anywhere             anywhere            udp dpt:sunrpc 
+    0     0 DROP       tcp  --  any    any     anywhere             anywhere            tcp dpt:auth 
+    0     0 DROP       udp  --  any    any     anywhere             anywhere            udp dpt:auth 
+    0     0 DROP       tcp  --  any    any     anywhere             anywhere            tcp dpts:epmap:netbios-ssn 
+    0     0 DROP       udp  --  any    any     anywhere             anywhere            udp dpts:epmap:netbios-ssn 
+   30  1532 DROP       tcp  --  any    any     anywhere             anywhere            tcp dpt:microsoft-ds 
+    0     0 DROP       udp  --  any    any     anywhere             anywhere            udp dpt:microsoft-ds 
+    0     0 DROP       tcp  --  any    any     anywhere             anywhere            tcp dpt:isakmp 
+    0     0 DROP       udp  --  any    any     anywhere             anywhere            udp dpt:isakmp 
+    0     0 DROP       tcp  --  any    any     anywhere             anywhere            tcp dpt:login 
+    0     0 DROP       udp  --  any    any     anywhere             anywhere            udp dpt:who 
+    0     0 DROP       tcp  --  any    any     anywhere             anywhere            tcp dpt:efs 
+    0     0 DROP       udp  --  any    any     anywhere             anywhere            udp dpt:router 
+  336 20572 LOG        tcp  --  any    any     anywhere             anywhere            limit: avg 30/min burst 5 LOG level warning prefix `Firewall: *TCP_IN Blocked* ' 
+   42  7309 LOG        udp  --  any    any     anywhere             anywhere            limit: avg 30/min burst 5 LOG level warning prefix `Firewall: *UDP_IN Blocked* ' 
+    0     0 LOG        icmp --  any    any     anywhere             anywhere            limit: avg 30/min burst 5 LOG level warning prefix `Firewall: *ICMP_IN Blocked* ' 
+  379 27933 DROP       all  --  any    any     anywhere             anywhere            
+
+Chain LOGDROPOUT (201 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    8   480 LOG        tcp  --  any    any     anywhere             anywhere            tcp flags:FIN,SYN,RST,ACK/SYN limit: avg 30/min burst 5 LOG level warning uid prefix `Firewall: *TCP_OUT Blocked* ' 
+    3   180 LOG        udp  --  any    any     anywhere             anywhere            limit: avg 30/min burst 5 LOG level warning uid prefix `Firewall: *UDP_OUT Blocked* ' 
+    0     0 LOG        icmp --  any    any     anywhere             anywhere            limit: avg 30/min burst 5 LOG level warning uid prefix `Firewall: *ICMP_OUT Blocked* ' 
+   34  2658 REJECT     all  --  any    any     anywhere             anywhere            reject-with icmp-port-unreachable 

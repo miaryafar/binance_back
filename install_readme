@@ -1,0 +1,3 @@
+install :
+
+composer require "jaggedsoft/php-binance-api @dev"

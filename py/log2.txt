@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/opt/rh/rh-python36/root/usr/lib64/python3.6/site-packages/mysql/connector/connection_cext.py", line 506, in cmd_query
+    raw_as_string=raw_as_string)
+_mysql_connector.MySQLInterfaceError: Lock wait timeout exceeded; try restarting transaction
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "peak.py", line 22, in <module>
+    mycursor.execute("UPDATE `btcusdt` SET `peak`=0 ")
+  File "/opt/rh/rh-python36/root/usr/lib64/python3.6/site-packages/mysql/connector/cursor_cext.py", line 266, in execute
+    raw_as_string=self._raw_as_string)
+  File "/opt/rh/rh-python36/root/usr/lib64/python3.6/site-packages/mysql/connector/connection_cext.py", line 509, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.DatabaseError: 1205 (HY000): Lock wait timeout exceeded; try restarting transaction
