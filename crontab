@@ -1,0 +1,13 @@
+30 * * * * /usr/local/bin/php -q /root/binance/btcusdt_not_ws.php >/dev/null 2>&1
+40 * * * * /usr/local/bin/php -q /root/binance/btcusdt_not_ws.php >/dev/null 2>&1
+50 * * * * /usr/local/bin/php -q /root/binance/btcusdt_not_ws.php >/dev/null 2>&1
+0 * * * * /usr/local/bin/php -q /root/binance/btcusdt_not_ws.php >/dev/null 2>&1
+10 * * * * /usr/local/bin/php -q /root/binance/btcusdt_not_ws.php >/dev/null 2>&1
+20 * * * * /usr/local/bin/php -q /root/binance/btcusdt_not_ws.php >/dev/null 2>&1
+0 * * * * /usr/local/bin/php -q /root/binance/order_control.php >/dev/null 2>&1
+10 * * * * /usr/local/bin/php -q /root/binance/order_control.php >/dev/null 2>&1
+20 * * * * /usr/local/bin/php -q /root/binance/order_control.php >/dev/null 2>&1
+30 * * * * /usr/local/bin/php -q /root/binance/order_control.php >/dev/null 2>&1
+40 * * * * /usr/local/bin/php -q /root/binance/order_control.php >/dev/null 2>&1
+50 * * * * /usr/local/bin/php -q /root/binance/order_control.php >/dev/null 2>&1
+5 * * * * /usr/bin/python3 -q /root/binance/py/main.py >/dev/null 2>&1
